@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_package = "com.tienda.grpc";
+option java_multiple_files = true;
+
+// Definición del servicio
+service CarritoService {
+  // Obtener el catálogo de productos disponibles
+  rpc obtenerCatalogo (Empty) returns (CatalogoResponse);
+
+  // Unario: Envía el carrito completo y recibe el total procesado
+  rpc procesarCarrito (CarritoRequest) returns (CarritoResponse);
+}
+
+// Mensaje vacío para peticiones sin parámetros
+message Empty {}
+
+// Respuesta que contiene la lista de productos del catálogo
+message CatalogoResponse {
+  repeated Producto productos = 1;
+}
+
+// Representa un producto individual
+message Producto {
+  string id = 1;
+  string nombre = 2;
+  double precio = 3;
+  int32 cantidad = 4;
+}
+
+// La petición contiene una lista de productos
+message CarritoRequest {
+  string usuario_id = 1;
+  repeated Producto items = 2; // Lista de productos
+}
+
+// La respuesta con el cálculo final
+message CarritoResponse {
+  string transaccion_id = 1;
+  double total_neto = 2;
+  double impuestos = 3;
+  double total_pagar = 4;
+  string estado = 5;
+  string mensaje = 6;
+}

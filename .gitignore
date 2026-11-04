@@ -1,0 +1,20 @@
+# Maven target directory
+**/target/
+target/
+
+# IDE files
+**/.idea/
+**/*.iml
+**/.vscode/
+**/.settings/
+**/.project/
+**/.classpath/
+**/nbproject/private/
+
+# Compiled classes and logs
+**/*.class
+**/*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
